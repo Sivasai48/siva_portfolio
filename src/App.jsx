@@ -1,40 +1,45 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaMoon, FaSun, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import Education from "./components/Education";
+import { FaGithub, FaLinkedin, FaEnvelope, FaMoon, FaSun } from "react-icons/fa";
 
-// Section Wrapper for X-axis animation
-function SectionWrapper({ children, initialX = -100, dark }) {
+// 🌸 Section Wrapper (smooth scroll + animation)
+function SectionWrapper({ children }) {
   return (
-    <motion.div
-      initial={{ x: initialX, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
       className="my-20 px-6 md:px-20"
     >
-      <div
-        className={`p-6 rounded-xl shadow-md ${
-          dark ? "bg-white/10 backdrop-blur-md" : "bg-white/30 backdrop-blur-sm"
-        } transition-all duration-500`}
-      >
+      <div className="bg-white/85 backdrop-blur-md p-8 rounded-2xl shadow-lg border border-gray-100">
         {children}
       </div>
-    </motion.div>
+    </motion.section>
   );
 }
 
-// Navbar Component
-function Navbar({ dark, setDark, sections }) {
+// 🌸 Navbar
+function Navbar({ dark, setDark }) {
+  const sections = [
+    "Home",
+    "About",
+    "Education",
+    "Experience",
+    "Skills",
+    "Projects",
+    "Certifications",
+    "Contact",
+  ];
   return (
-    <nav className="fixed top-0 w-full flex justify-between items-center px-6 md:px-20 py-4 z-50 backdrop-blur-md bg-white/20 dark:bg-black/20 transition-colors duration-500">
-      <h1 className="font-bold text-2xl text-indigo-500">Siva Sai</h1>
+    <nav className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-20 py-4 bg-white/80 backdrop-blur-md shadow-md z-50">
+      <h1 className="font-bold text-2xl text-indigo-600">Siva Sai</h1>
       <ul className="hidden md:flex gap-6">
-        {sections.map(sec => (
+        {sections.map((sec) => (
           <li key={sec}>
             <a
               href={`#${sec.toLowerCase()}`}
-              className="hover:text-indigo-400 transition-colors duration-300 font-medium"
+              className="text-gray-800 hover:text-indigo-600 transition font-medium"
             >
               {sec}
             </a>
@@ -45,63 +50,50 @@ function Navbar({ dark, setDark, sections }) {
         <a
           href="/resume.pdf"
           download
-          className="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-semibold transition-colors duration-300"
+          className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
         >
           Resume
         </a>
         <button
           onClick={() => setDark(!dark)}
-          className="p-2 rounded-full ring-1 ring-gray-400 hover:ring-gray-500 transition"
+          className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition"
         >
-          {dark ? <FaSun /> : <FaMoon />}
+          {dark ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-700" />}
         </button>
       </div>
     </nav>
   );
 }
 
-// Hero Component
-function Hero({ dark }) {
+// 🌸 Hero Section
+function Hero() {
   const socials = [
     { icon: <FaGithub />, link: "https://github.com/Sivasai48" },
     { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/paravada-sivasai" },
     { icon: <FaEnvelope />, link: "mailto:paravadasivasai17@gmail.com" },
   ];
 
-  const blobVariants = {
-    float: {
-      y: [0, -20, 0],
-      x: [0, 15, 0],
-      transition: { duration: 12, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" },
-    },
-  };
-
   return (
     <section
-      className="relative flex flex-col items-center justify-center text-center h-screen px-6 md:px-20 overflow-hidden"
+      id="home"
+      className="flex flex-col items-center justify-center text-center h-screen px-6 md:px-20 bg-gradient-to-b from-indigo-100 via-blue-100 to-blue-200"
     >
-      {/* Floating blobs */}
-      <motion.div
-        className="absolute w-72 h-72 bg-pink-400 rounded-full filter blur-3xl opacity-50 top-10 left-10"
-        variants={blobVariants}
-        animate="float"
-      />
-      <motion.div
-        className="absolute w-64 h-64 bg-yellow-400 rounded-full filter blur-3xl opacity-40 bottom-20 right-20"
-        variants={blobVariants}
-        animate="float"
-      />
-
-      <h1 className={`text-4xl md:text-6xl font-bold mb-4 ${dark ? "text-white" : "text-indigo-700"}`}>
-        Hi, I'm <span className="text-pink-300">Paravada Siva Sai</span> 👋
-      </h1>
-      <p className={`text-lg md:text-2xl max-w-2xl mb-6 ${dark ? "text-yellow-100" : "text-gray-700"}`}>
-        Full Stack Developer creating modern, responsive, and dynamic web applications.
+      <h2 className="text-5xl md:text-6xl font-bold mb-4 text-gray-900">
+        Hi, I'm <span className="text-indigo-600">Siva Sai</span> 👋
+      </h2>
+      <p className="text-lg md:text-2xl text-gray-700 max-w-2xl mb-8">
+        Full Stack Developer passionate about crafting clean, responsive, and dynamic web
+        applications.
       </p>
-
-      <div className="flex gap-6 text-2xl">
+      <div className="flex gap-6">
         {socials.map((s, i) => (
-          <a key={i} href={s.link} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors duration-300">
+          <a
+            key={i}
+            href={s.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl text-gray-700 hover:text-indigo-600 transition"
+          >
             {s.icon}
           </a>
         ))}
@@ -110,69 +102,50 @@ function Hero({ dark }) {
   );
 }
 
-// About Component
-function About({ dark }) {
+// 🌸 About Section
+function About() {
   return (
-    <SectionWrapper dark={dark}>
-      <h2 className="text-3xl font-bold mb-4 text-center">About Me</h2>
-      <p className="text-center text-lg leading-relaxed">
-        I’m a passionate Full Stack Developer. I build clean, performant, and user-friendly web applications.
-        I enjoy solving real-world problems with creative and logical solutions.
+    <SectionWrapper>
+      <h2 className="text-3xl font-bold text-center mb-6 text-gray-900">About Me</h2>
+      <p className="text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
+        I'm a dedicated Full Stack Developer who enjoys solving problems and creating beautiful,
+        functional web applications. I love working with modern tools and frameworks like React,
+        Node.js, and MongoDB to bring ideas to life.
       </p>
     </SectionWrapper>
   );
 }
 
-// Experience Component
-function Experience({ dark }) {
-  return (
-    <SectionWrapper dark={dark} initialX={100}>
-      <h2 className="text-3xl font-bold mb-4 text-center">Experience</h2>
-      <ul className="list-disc pl-5 space-y-2">
-        <li>Web Developer at XYZ Company (2023-Present)</li>
-        <li>Internship at ABC Technologies (2022)</li>
-      </ul>
-    </SectionWrapper>
-  );
-}
-
-// Skills Component
-function Skills({ dark }) {
-  const skills = ["React", "Node.js", "Express", "MongoDB", "MySQL", "Tailwind", "JavaScript", "Python"];
-  return (
-    <SectionWrapper dark={dark}>
-      <h2 className="text-3xl font-bold mb-6 text-center">Skills</h2>
-      <div className="flex flex-wrap gap-4 justify-center">
-        {skills.map(skill => (
-          <span key={skill} className={`px-3 py-1 rounded-full font-medium ${dark ? "bg-white/10 text-white" : "bg-indigo-100 text-indigo-700"}`}>
-            {skill}
-          </span>
-        ))}
-      </div>
-    </SectionWrapper>
-  );
-}
-
-// Projects Component
-function Projects({ dark }) {
-  const projects = [
-    { title: "Sleep Tracker App", desc: "Track sleep cycles and visualize weekly reports.", tech: ["React", "Node.js", "MySQL"], link: "#" },
-    { title: "Task Manager", desc: "Organize tasks with reminders and calendar integration.", tech: ["Express", "MongoDB", "SendGrid"], link: "#" },
-    { title: "AI Trip Planner", desc: "Automates trip itineraries using AI and APIs.", tech: ["n8n", "OpenAI", "Node.js"], link: "#" },
+// 🌸 Education Section
+function Education() {
+  const education = [
+    {
+      degree: "Bachelor of Technology in Computer Science",
+      college: "Aditya Engineering College",
+      year: "2021 – 2025",
+      details: "Focused on web development, data structures, and cloud technologies.",
+    },
+    {
+      degree: "Intermediate (MPC)",
+      college: "Sri Chaitanya Junior College",
+      year: "2019 – 2021",
+      details: "Studied Mathematics, Physics, and Chemistry.",
+    },
   ];
 
   return (
-    <SectionWrapper dark={dark} initialX={100}>
-      <h2 className="text-3xl font-bold mb-6 text-center">Projects</h2>
-      <div className="grid md:grid-cols-3 gap-6">
-        {projects.map(proj => (
-          <div key={proj.title} className={`p-4 rounded-xl shadow-md ${dark ? "bg-white/10 text-white" : "bg-white/60 text-gray-900"}`}>
-            <h3 className="font-semibold text-xl">{proj.title}</h3>
-            <p className="mt-2 text-sm">{proj.desc}</p>
-            <div className="flex flex-wrap gap-2 mt-2">
-              {proj.tech.map(t => <span key={t} className="text-xs bg-indigo-500 px-2 py-1 rounded-full">{t}</span>)}
-            </div>
-            <a href={proj.link} className="mt-3 inline-block text-indigo-300 hover:underline">View Project →</a>
+    <SectionWrapper>
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Education</h2>
+      <div className="grid gap-6 max-w-4xl mx-auto">
+        {education.map((edu, index) => (
+          <div
+            key={index}
+            className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 hover:shadow-lg transition"
+          >
+            <h3 className="text-xl font-semibold text-indigo-600">{edu.degree}</h3>
+            <p className="text-gray-800">{edu.college}</p>
+            <p className="text-gray-600 text-sm">{edu.year}</p>
+            <p className="text-gray-700 mt-2">{edu.details}</p>
           </div>
         ))}
       </div>
@@ -180,69 +153,181 @@ function Projects({ dark }) {
   );
 }
 
-// Certifications Component
-function Certifications({ dark }) {
-  const certs = ["React Developer Certificate", "Node.js Professional", "Full Stack Web Development"];
+// 🌸 Experience Section
+function Experience() {
+  const experiences = [
+    {
+      role: "Web Developer Intern",
+      company: "ABC Tech Solutions",
+      year: "2024",
+      details:
+        "Developed and maintained responsive web interfaces using React and Node.js, improving page performance by 30%.",
+    },
+    {
+      role: "Frontend Developer Intern",
+      company: "XYZ Infotech",
+      year: "2023",
+      details:
+        "Created reusable UI components with React and integrated REST APIs for dynamic data updates.",
+    },
+  ];
+
   return (
-    <SectionWrapper dark={dark} initialX={-100}>
-      <h2 className="text-3xl font-bold mb-4 text-center">Certifications</h2>
-      <ul className="list-disc pl-5 space-y-2">
-        {certs.map(cert => <li key={cert}>{cert}</li>)}
-      </ul>
+    <SectionWrapper>
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Experience</h2>
+      <div className="grid gap-6 max-w-4xl mx-auto">
+        {experiences.map((exp, index) => (
+          <div
+            key={index}
+            className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 hover:shadow-lg transition"
+          >
+            <h3 className="text-xl font-semibold text-indigo-600">{exp.role}</h3>
+            <p className="text-gray-800">{exp.company}</p>
+            <p className="text-gray-600 text-sm">{exp.year}</p>
+            <p className="text-gray-700 mt-2">{exp.details}</p>
+          </div>
+        ))}
+      </div>
     </SectionWrapper>
   );
 }
 
-// Contact Component
-function Contact({ dark }) {
+// 🌸 Skills Section
+function Skills() {
+  const skills = [
+    "React", "Node.js", "Express", "MongoDB", "MySQL", "Tailwind CSS",
+    "HTML", "CSS", "JavaScript", "Java", "Python", "Power BI",
+    "Excel", "AWS (Basics)", "Git & GitHub",
+  ];
+
   return (
-    <SectionWrapper dark={dark} initialX={100}>
-      <h2 className="text-3xl font-bold mb-4 text-center">Contact Me</h2>
-      <p className="text-center mb-4">Let's collaborate or just say hi 👋</p>
-      <div className="flex justify-center">
-        <a href="mailto:paravadasivasai17@gmail.com" className="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-colors duration-300">
-          Send Email
+    <SectionWrapper>
+      <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Skills</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 max-w-5xl mx-auto">
+        {skills.map((skill) => (
+          <div
+            key={skill}
+            className="py-3 px-4 rounded-xl bg-indigo-50 text-gray-900 shadow-sm border border-indigo-100 hover:shadow-lg hover:bg-indigo-100 font-medium text-center transition-all duration-300"
+          >
+            {skill}
+          </div>
+        ))}
+      </div>
+    </SectionWrapper>
+  );
+}
+
+// 🌸 Projects Section
+function Projects() {
+  const projects = [
+    {
+      name: "Sleep Tracker App",
+      tech: "React, Node.js, MySQL",
+      desc: "Tracks user sleep data and visualizes patterns with interactive graphs.",
+    },
+    {
+      name: "Task Manager",
+      tech: "Node.js, Express, MongoDB",
+      desc: "Manages daily tasks with authentication and calendar features.",
+    },
+    {
+      name: "Weather Dashboard",
+      tech: "HTML, CSS, JavaScript, API",
+      desc: "Displays real-time weather updates and trends for cities.",
+    },
+  ];
+
+  return (
+    <SectionWrapper>
+      <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Projects</h2>
+      <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
+        {projects.map((p, i) => (
+          <div
+            key={i}
+            className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 hover:shadow-lg transition"
+          >
+            <h3 className="text-xl font-semibold text-indigo-600 mb-2">{p.name}</h3>
+            <p className="text-gray-700 mb-1">{p.tech}</p>
+            <p className="text-gray-600 text-sm">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </SectionWrapper>
+  );
+}
+
+// 🌸 Certifications Section
+function Certifications() {
+  const certs = [
+    { title: "AWS Cloud Practitioner", org: "Amazon Web Services", year: "2024" },
+    { title: "Java Programming", org: "Oracle", year: "2023" },
+    { title: "Web Development Bootcamp", org: "Udemy", year: "2022" },
+  ];
+
+  return (
+    <SectionWrapper>
+      <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Certifications</h2>
+      <div className="grid gap-6 max-w-4xl mx-auto">
+        {certs.map((c, i) => (
+          <div
+            key={i}
+            className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 hover:shadow-lg transition"
+          >
+            <h3 className="text-xl font-semibold text-indigo-600">{c.title}</h3>
+            <p className="text-gray-800">{c.org}</p>
+            <p className="text-gray-600 text-sm">{c.year}</p>
+          </div>
+        ))}
+      </div>
+    </SectionWrapper>
+  );
+}
+
+// 🌸 Contact Section
+function Contact() {
+  return (
+    <SectionWrapper>
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Contact</h2>
+      <p className="text-center text-gray-700 mb-6">
+        I’d love to connect! Feel free to reach out anytime.
+      </p>
+      <div className="flex justify-center gap-6">
+        <a href="mailto:paravadasivasai17@gmail.com" className="text-indigo-600 hover:underline">
+          paravadasivasai17@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/paravada-sivasai" className="text-indigo-600 hover:underline">
+          LinkedIn
         </a>
       </div>
     </SectionWrapper>
   );
 }
 
-// Footer Component
-function Footer({ dark }) {
+// 🌸 Footer
+function Footer() {
   return (
-    <footer className="text-center py-6 text-sm opacity-70">
-      © 2025 Siva Sai. All Rights Reserved.
+    <footer className="text-center py-6 text-gray-600 bg-white/80 backdrop-blur-md border-t border-gray-200">
+      © {new Date().getFullYear()} Siva Sai | Built with ❤️ and React
     </footer>
   );
 }
 
-// Main App
+// 🌸 Main App
 export default function App() {
-  const [dark, setDark] = useState(true);
-  const sections = ["About", "Experience", "Skills", "Projects", "Certifications", "Contact"];
+  const [dark, setDark] = useState(false);
 
   return (
-    <div className={dark ? "dark" : ""}>
-      <div
-     className={`min-h-screen transition-colors duration-500 ${
-    dark
-      ? "bg-gradient-to-b from-teal-900 via-cyan-800 to-blue-800 text-white"
-      : "bg-gradient-to-b from-beige-50 via-cream-50 to-pink-50 text-gray-900"
-  }`}
-
-      >
-        <Navbar dark={dark} setDark={setDark} sections={sections} />
-        <Hero dark={dark} />
-        <About dark={dark} />
-        <Education dark={dark}/>
-        <Experience dark={dark} />
-        <Skills dark={dark} />
-        <Projects dark={dark} />
-        <Certifications dark={dark} />
-        <Contact dark={dark} />
-        <Footer dark={dark} />
-      </div>
+    <div className="font-sans bg-gradient-to-b from-indigo-50 via-blue-50 to-blue-100 text-gray-900 min-h-screen">
+      <Navbar dark={dark} setDark={setDark} />
+      <Hero />
+      <About />
+      <Education />
+      <Experience />
+      <Skills />
+      <Projects />
+      <Certifications />
+      <Contact />
+      <Footer />
     </div>
   );
 }

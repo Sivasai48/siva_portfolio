@@ -2,8 +2,9 @@ import SectionWrapper from "./SectionWrapper";
 
 export default function Certifications() {
   const certs = [
-    { title:"React Developer", org:"Udemy", year:"2023" },
-    { title:"Full Stack Web Dev", org:"Coursera", year:"2022" }
+    { title:"Cloud Computing", org:"NPTEL", year:"2024" },
+    { title:"Full Stack Web Development", org:"Edumoon", year:"2024" },
+    { title:"Hackathon", org:"SIH", year:"2024" }
   ];
 
   return (

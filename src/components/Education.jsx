@@ -4,26 +4,20 @@ import SectionWrapper from "./SectionWrapper";
 export default function Education() {
   const education = [
     {
-      degree: "Bachelor of Technology in Computer Science and Engineering",
-      institution: "Aditya Engineering College",
-      duration: "2021 - 2025",
+      degree: "Bachelor of Technology in Computer Science and Engineering (Data Science)",
+      institution: " Anil Neerukonda Institute of Technology and Sciences (ANITS)",
+      duration: "2022 - 2026",
       details: [
-        "CGPA: 8.9 (till date)",
-        "Focused on Web Development, Machine Learning, and Data Structures",
+        "CGPA: 8.37 (till date)",
+        "Focused on Web Development, Data science , Machine Learning, and Data Structures",
       ],
     },
     {
       degree: "Intermediate (MPC)",
-      institution: "Sri Chaitanya Junior College",
-      duration: "2019 - 2021",
-      details: ["Percentage: 96%", "Mathematics, Physics, Chemistry specialization"],
-    },
-    {
-      degree: "Secondary School Education",
-      institution: "Bhashyam High School",
-      duration: "2018 - 2019",
-      details: ["GPA: 10.0/10.0", "Top rank in district level"],
-    },
+      institution: "Sasi Junior College",
+      duration: "2020 - 2022",
+      details: ["Percentage: 95.6%", "Mathematics, Physics, Chemistry specialization"],
+    }
   ];
 
   return (
