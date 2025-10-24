@@ -33,7 +33,7 @@ function Navbar({ dark, setDark }) {
   ];
   return (
     <nav className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-20 py-4 bg-white/80 backdrop-blur-md shadow-md z-50">
-      <h1 className="font-bold text-2xl text-indigo-600">Siva Sai</h1>
+      <h1 className="font-bold text-2xl text-indigo-700">Paravada Siva Sai</h1>
       <ul className="hidden md:flex gap-6">
         {sections.map((sec) => (
           <li key={sec}>
@@ -79,7 +79,7 @@ function Hero() {
       className="flex flex-col items-center justify-center text-center h-screen px-6 md:px-20 bg-gradient-to-b from-indigo-100 via-blue-100 to-blue-200"
     >
       <h2 className="text-5xl md:text-6xl font-bold mb-4 text-gray-900">
-        Hi, I'm <span className="text-indigo-600">Siva Sai</span> 👋
+        Hi, I'm <span className="text-indigo-600">Paravada Siva Sai</span> 👋
       </h2>
       <p className="text-lg md:text-2xl text-gray-700 max-w-2xl mb-8">
         Full Stack Developer passionate about crafting clean, responsive, and dynamic web
@@ -120,15 +120,15 @@ function About() {
 function Education() {
   const education = [
     {
-      degree: "Bachelor of Technology in Computer Science",
-      college: "Aditya Engineering College",
-      year: "2021 – 2025",
-      details: "Focused on web development, data structures, and cloud technologies.",
+      degree: "Bachelor of Technology in Computer Science and Engineering (Data Science)",
+      college: " Anil Neerukonda Institute of Technology and Sciences",
+      year: "2022 – 2026",
+      details: "Focused on web development, Data Science , Machine Learning and data structures.",
     },
     {
       degree: "Intermediate (MPC)",
-      college: "Sri Chaitanya Junior College",
-      year: "2019 – 2021",
+      college: "Sasi Junior College",
+      year: "2020 – 2022",
       details: "Studied Mathematics, Physics, and Chemistry.",
     },
   ];
@@ -157,19 +157,12 @@ function Education() {
 function Experience() {
   const experiences = [
     {
-      role: "Web Developer Intern",
-      company: "ABC Tech Solutions",
-      year: "2024",
+      role: "Full Stack Web Developer Intern",
+      company: "Edumoon — Visakhapatnam",
+      year: " May 2024 – Jul 2024",
       details:
-        "Developed and maintained responsive web interfaces using React and Node.js, improving page performance by 30%.",
-    },
-    {
-      role: "Frontend Developer Intern",
-      company: "XYZ Infotech",
-      year: "2023",
-      details:
-        "Created reusable UI components with React and integrated REST APIs for dynamic data updates.",
-    },
+        " Developed responsive interfaces (HTML, CSS, JavaScript), improving page load speed by 20%. Built and optimized backend services with Node.js, Express, and MongoDB, reducing API latency by 15%.",
+    }
   ];
 
   return (
@@ -222,18 +215,18 @@ function Projects() {
   const projects = [
     {
       name: "Sleep Tracker App",
-      tech: "React, Node.js, MySQL",
-      desc: "Tracks user sleep data and visualizes patterns with interactive graphs.",
+      tech: "Vue, Node.js, Express , MongoDB",
+      desc: "Built full-stack sleep tracker with secure authentication and RESTful APIs. Improved data integrity using Mongoose schemas; reduced entry errors by 30%.",
     },
     {
-      name: "Task Manager",
-      tech: "Node.js, Express, MongoDB",
-      desc: "Manages daily tasks with authentication and calendar features.",
+      name: "Data Backup & Archival System",
+      tech: "AWS Devops Services",
+      desc: "Automated backup and archival workflows using S3/Glacier and lifecycle policies, lowering storage costs by 40%. Implemented CloudTrail logging, CloudWatch monitoring and SNS alerts; improved incident response by 35%.",
     },
     {
-      name: "Weather Dashboard",
-      tech: "HTML, CSS, JavaScript, API",
-      desc: "Displays real-time weather updates and trends for cities.",
+      name: "Car Sales Dashboard",
+      tech: "Tableau, Python, Kaggle dataset",
+      desc: "Built interactive dashboards analyzing 10k+ sales records across 12 categories. Performed ETL and transformation to reduce processing time by 25%; created actionable visual insights.",
     },
   ];
 
@@ -259,9 +252,10 @@ function Projects() {
 // 🌸 Certifications Section
 function Certifications() {
   const certs = [
-    { title: "AWS Cloud Practitioner", org: "Amazon Web Services", year: "2024" },
-    { title: "Java Programming", org: "Oracle", year: "2023" },
-    { title: "Web Development Bootcamp", org: "Udemy", year: "2022" },
+    { title: "Cloud Computing", org: "NPTEL", year: "2024" },
+    { title: "Hackthon", org: "SIH", year: "2024" },
+    { title: " Executive member, Social Responsibilities Club (SAC)", org: "SAC", year: "2024" },
+    { title: " JNTU Code War 2.0", org: "JNTU", year: "2024" },
   ];
 
   return (
