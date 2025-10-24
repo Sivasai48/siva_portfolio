@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaMoon, FaSun, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import Education from "./components/Education";
 
 // Section Wrapper for X-axis animation
 function SectionWrapper({ children, initialX = -100, dark }) {
@@ -92,7 +93,7 @@ function Hero({ dark }) {
       />
 
       <h1 className={`text-4xl md:text-6xl font-bold mb-4 ${dark ? "text-white" : "text-indigo-700"}`}>
-        Hi, I'm <span className="text-pink-300">Siva Sai</span> 👋
+        Hi, I'm <span className="text-pink-300">Paravada Siva Sai</span> 👋
       </h1>
       <p className={`text-lg md:text-2xl max-w-2xl mb-6 ${dark ? "text-yellow-100" : "text-gray-700"}`}>
         Full Stack Developer creating modern, responsive, and dynamic web applications.
@@ -234,6 +235,7 @@ export default function App() {
         <Navbar dark={dark} setDark={setDark} sections={sections} />
         <Hero dark={dark} />
         <About dark={dark} />
+        <Education dark={dark}/>
         <Experience dark={dark} />
         <Skills dark={dark} />
         <Projects dark={dark} />
