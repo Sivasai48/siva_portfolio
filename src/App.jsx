@@ -1,21 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { FaGithub, FaLinkedin, FaEnvelope, FaMoon, FaSun } from "react-icons/fa";
 
 // 🌸 Section Wrapper (smooth scroll + animation)
-function SectionWrapper({ children }) {
+function SectionWrapper({ children, animation = "fade-up" }) {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
+    <section
+      data-aos={animation}
       className="my-20 px-6 md:px-20"
     >
       <div className="bg-white/85 backdrop-blur-md p-8 rounded-2xl shadow-lg border border-gray-100">
         {children}
       </div>
-    </motion.section>
+    </section>
   );
 }
 
@@ -48,7 +47,7 @@ function Navbar({ dark, setDark }) {
       </ul>
       <div className="flex gap-4 items-center">
         <a
-          href="/resume.pdf"
+          href="/sivasaiparavada1.pdf"
           download
           className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
         >
@@ -76,6 +75,7 @@ function Hero() {
   return (
     <section
       id="home"
+      data-aos="fade-up"
       className="flex flex-col items-center justify-center text-center h-screen px-6 md:px-20 bg-gradient-to-b from-indigo-100 via-blue-100 to-blue-200"
     >
       <h2 className="text-5xl md:text-6xl font-bold mb-4 text-gray-900">
@@ -105,7 +105,7 @@ function Hero() {
 // 🌸 About Section
 function About() {
   return (
-    <SectionWrapper>
+    <SectionWrapper animation="fade-right">
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-900">About Me</h2>
       <p className="text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
         I'm a dedicated Full Stack Developer who enjoys solving problems and creating beautiful,
@@ -121,9 +121,9 @@ function Education() {
   const education = [
     {
       degree: "Bachelor of Technology in Computer Science and Engineering (Data Science)",
-      college: " Anil Neerukonda Institute of Technology and Sciences",
+      college: "Anil Neerukonda Institute of Technology and Sciences",
       year: "2022 – 2026",
-      details: "Focused on web development, Data Science , Machine Learning and data structures.",
+      details: "Focused on web development, Data Science, Machine Learning, and Data Structures.",
     },
     {
       degree: "Intermediate (MPC)",
@@ -134,7 +134,7 @@ function Education() {
   ];
 
   return (
-    <SectionWrapper>
+    <SectionWrapper animation="fade-up">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Education</h2>
       <div className="grid gap-6 max-w-4xl mx-auto">
         {education.map((edu, index) => (
@@ -159,14 +159,14 @@ function Experience() {
     {
       role: "Full Stack Web Developer Intern",
       company: "Edumoon — Visakhapatnam",
-      year: " May 2024 – Jul 2024",
+      year: "May 2024 – Jul 2024",
       details:
-        " Developed responsive interfaces (HTML, CSS, JavaScript), improving page load speed by 20%. Built and optimized backend services with Node.js, Express, and MongoDB, reducing API latency by 15%.",
-    }
+        "Developed responsive interfaces (HTML, CSS, JavaScript). Built and optimized backend services with Node.js, Express, and MongoDB.",
+    },
   ];
 
   return (
-    <SectionWrapper>
+    <SectionWrapper animation="fade-left">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Experience</h2>
       <div className="grid gap-6 max-w-4xl mx-auto">
         {experiences.map((exp, index) => (
@@ -194,7 +194,7 @@ function Skills() {
   ];
 
   return (
-    <SectionWrapper>
+    <SectionWrapper animation="zoom-in">
       <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Skills</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 max-w-5xl mx-auto">
         {skills.map((skill) => (
@@ -215,23 +215,23 @@ function Projects() {
   const projects = [
     {
       name: "Sleep Tracker App",
-      tech: "Vue, Node.js, Express , MongoDB",
-      desc: "Built full-stack sleep tracker with secure authentication and RESTful APIs. Improved data integrity using Mongoose schemas; reduced entry errors by 30%.",
+      tech: "Vue, Node.js, Express, MongoDB",
+      desc: "Built full-stack sleep tracker with authentication and RESTful APIs.",
     },
     {
       name: "Data Backup & Archival System",
-      tech: "AWS Devops Services",
-      desc: "Automated backup and archival workflows using S3/Glacier and lifecycle policies, lowering storage costs by 40%. Implemented CloudTrail logging, CloudWatch monitoring and SNS alerts; improved incident response by 35%.",
+      tech: "AWS DevOps Services",
+      desc: "Automated backup and archival workflows using AWS services.",
     },
     {
       name: "Car Sales Dashboard",
       tech: "Tableau, Python, Kaggle dataset",
-      desc: "Built interactive dashboards analyzing 10k+ sales records across 12 categories. Performed ETL and transformation to reduce processing time by 25%; created actionable visual insights.",
+      desc: "Built interactive dashboards analyzing 10k+ sales records.",
     },
   ];
 
   return (
-    <SectionWrapper>
+    <SectionWrapper animation="fade-up">
       <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Projects</h2>
       <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
         {projects.map((p, i) => (
@@ -253,13 +253,13 @@ function Projects() {
 function Certifications() {
   const certs = [
     { title: "Cloud Computing", org: "NPTEL", year: "2024" },
-    { title: "Hackthon", org: "SIH", year: "2024" },
-    { title: " Executive member, Social Responsibilities Club (SAC)", org: "SAC", year: "2024" },
-    { title: " JNTU Code War 2.0", org: "JNTU", year: "2024" },
+    { title: "Hackathon", org: "SIH", year: "2024" },
+    { title: "Executive Member - Social Responsibilities Club", org: "SAC", year: "2024" },
+    { title: "JNTU Code War 2.0", org: "JNTU", year: "2024" },
   ];
 
   return (
-    <SectionWrapper>
+    <SectionWrapper animation="fade-right">
       <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Certifications</h2>
       <div className="grid gap-6 max-w-4xl mx-auto">
         {certs.map((c, i) => (
@@ -280,7 +280,7 @@ function Certifications() {
 // 🌸 Contact Section
 function Contact() {
   return (
-    <SectionWrapper>
+    <SectionWrapper animation="zoom-in">
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Contact</h2>
       <p className="text-center text-gray-700 mb-6">
         I’d love to connect! Feel free to reach out anytime.
@@ -310,17 +310,21 @@ function Footer() {
 export default function App() {
   const [dark, setDark] = useState(false);
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
+  }, []);
+
   return (
-    <div className="font-sans bg-gradient-to-b from-indigo-50 via-blue-50 to-blue-100 text-gray-900 min-h-screen">
+    <div className="font-sans bg-gradient-to-b from-indigo-100 via-blue-50 to-blue-150 text-gray-900 min-h-screen">
       <Navbar dark={dark} setDark={setDark} />
-      <Hero />
-      <About />
-      <Education />
-      <Experience />
-      <Skills />
-      <Projects />
-      <Certifications />
-      <Contact />
+      <section id="home"><Hero /></section>
+      <section id="about"><About /></section>
+      <section id="education"><Education /></section>
+      <section id="experience"><Experience /></section>
+      <section id="skills"><Skills /></section>
+      <section id="projects"><Projects /></section>
+      <section id="certifications"><Certifications /></section>
+      <section id="contact"><Contact /></section>
       <Footer />
     </div>
   );
